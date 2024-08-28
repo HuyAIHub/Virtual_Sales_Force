@@ -1,0 +1,28 @@
+directories:
+  persist_vector_directory: data/vector_db
+  csv_product_directory: data/data_csv
+  text_product_directory: data/data_text
+  
+llm_config:
+  rag_model: gpt-4o-mini-2024-07-18
+  chatchit_model: gpt-4o-mini-2024-07-18
+  temperature_rag: 0.0
+  temperature_chat: 1.0
+  max_token: 1024
+
+retriever_config:
+  embedding_model: BAAI/bge-base-en-v1.5
+  vector_embed_size: 768
+  top_k: 4
+  top_p: 0.9
+  score_thres: 0.7
+
+chunk_config:
+  chunk_size: 1248
+  chunk_overlap: 200
+
+product:
+  id_2_name: {
+    1: "dieu_hoa",
+    0: "LLM",
+  }
