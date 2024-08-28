@@ -1,0 +1,293 @@
+server:
+    ip_address: "0.0.0.0"
+    port: 8089
+parameter:
+    #path data
+    DATA_PATH: "data/"
+    data_private: ./data/product_final_300_extract.xlsx
+    #rasa_url
+    #llm
+    embeddings_name: "sentence-transformers/all-MiniLM-L6-v2"
+    gpt_model_to_use: "gpt-4o-mini-2024-07-18"
+    # gpt_model_to_use: "gpt-4o-mini-2024-07-18"
+    grog_model_to_use: "llama3-70b-8192"
+    temperature: 0
+    gpt_max_tokens: 256
+    search_number_messages: 3
+    #elasticsearch
+    elastic_url: "http://10.248.243.105:9200"
+    num_size_elas: 10
+    num_product: 1  # Số lượng sản phẩm tối đa cần tìm
+        
+    example_price: [
+        {
+            "input_text":"điều hòa nào có tính năng hẹn giờ và điều khiển từ xa giá rẻ nhất",
+            "object":["điều hòa"],
+            "power":"",           
+            "price":["giá rẻ nhất"],
+            "weight":"",
+            "volume":"",
+            "specifications":"tính năng hẹn giờ và điều khiển từ xa"
+        },
+        {
+            "input_text":"Tôi muốn tìm điều hòa giá 10tr có tính năng inverter, diện tích lam mát khoảng 20m2",
+            "object":["điều hòa"],
+            "power":"",           
+            "price":["giá 10tr"],
+            "weight":"",
+            "volume":"",
+            "specifications":"tính năng inverter, diện tích lam mát khoảng 20m2"
+        },
+        {
+            "input_text":"Tôi cần điều hòa Carrier 1 chiều Inverter 12.000 BTU/h (1.5 HP) - Model 2023 giá 11.5tr",
+            "object":["điều hòa Carrier 1 chiều Inverter 12.000 BTU/h (1.5 HP) - Model 2023"],
+            "power":"",           
+            "price":["giá 11.5tr"],
+            "weight":"",
+            "volume":"",
+            "specifications":""
+        },
+        {
+            "input_text":"điều hòa 5 nghìn đồng",
+            "object":["lò vi sóng"],
+            "power":"",           
+            "price":["5 nghìn đồng"],
+            "weight":"",
+            "volume":"",
+            "specifications":""
+        },
+        {
+            "input_text":"Điều hòa rẻ",
+            "object":["điều hòa"],
+            "power":"",           
+            "price":["rẻ"],
+            "weight":"",
+            "volume":"",
+            "specifications":""
+        },
+        {
+            "input_text":"Tôi cần tìm điều hòa khoảng 20tr",
+            "object":["điều hòa "],
+            "power":"",           
+            "price":["khoảng 20tr"],
+            "weight":"",
+            "volume":"",
+            "specifications":""
+        },
+        {
+            "input_text":"Với 20 triệu tôi có thể mua được điều hòa nào",
+            "object":["điều hòa"],
+            "power":"",           
+            "price":["20 triệu"],
+            "weight":"",
+            "volume":"",
+            "specifications":""
+        }
+        ]
+
+    example_power: [
+        {
+            "input_text":"điều hòa công suất 90W",
+            "object":["điều hòa"],
+            "power":"90W",           
+            "price":[""],
+            "weight":"",
+            "volume":"",
+            "specifications":""
+        },
+        {
+            "input_text":"Tôi cần xem điều hòa nào có công suất lớn nhất",
+            "object":["điều hòa"],
+            "power":"lớn nhất",           
+            "price":[""],
+            "weight":"",
+            "volume":"",
+            "specifications":""
+        },
+        {
+            "input_text":"tôi cần điều hòa công suất trên 1000kw",
+            "object":["tủ lạnh"],
+            "power":"trên 1000kw",           
+            "price":[""],
+            "weight":"",
+            "volume":"",
+            "specifications":""
+        },
+        {
+            "input_text":"Điều hòa Daikin 2 chiều Inverter 2023 bao nhiêu w",
+            "object":["Điều hòa Daikin 2 chiều Inverter 2023"],
+            "power":"",           
+            "price":[""],
+            "weight":"",
+            "volume":"",
+            "specifications":""
+        },
+        {
+            "input_text":"với công suất 300w thì có những sản phẩm điều hòa nào",
+            "object":["điều hòa"],
+            "power":"300w",           
+            "price":[""],
+            "weight":"",
+            "volume":"",
+            "specifications":""
+        },
+        {
+            "input_text":"điều hòa nào có công suất nhỏ",
+            "object":["điều hòa"],
+            "power":"nhỏ",           
+            "price":[""],
+            "weight":"",
+            "volume":"",
+            "specifications":""
+        },
+        {
+            "input_text":"Bên bán có bán điều hòa có công suất 12000w có tính năng Inverter",
+            "object":["điều hòa"],
+            "power":"12000w",           
+            "price":[""],
+            "weight":"",
+            "volume":"",
+            "specifications":"tính năng Inverter"
+        }]
+
+    example_volume: [
+        {
+            "input_text":"cho tôi điều hòa có dung tích 30 lít",
+            "object":["điều hòa"],
+            "power":"",           
+            "price":[""],
+            "weight":"",
+            "volume":"30 lít",
+            "specifications":""
+        },
+        {
+            "input_text":"điều hòa dung tích trên 500ml",
+            "object":["điều hòa"],
+            "power":"",           
+            "price":[""],
+            "weight":"",
+            "volume":"trên 500ml",
+            "specifications":""
+        },
+        {
+            "input_text":"tôi cần tìm điều hòa có dung tích lớn",
+            "object":["điều hòa"],
+            "power":"",           
+            "price":[""],
+            "weight":"",
+            "volume":"dung tích lớn",
+            "specifications":""
+        },
+        {
+            "input_text":"điều hòa nào đang có thể tích nhỏ",
+            "object":["điều hòa"],
+            "power":"",           
+            "price":[""],
+            "weight":"",
+            "volume":"thể tích nhỏ",
+            "specifications":""
+        }]
+
+    example_weight: [
+        {
+            "input_text":"cho tôi điều hòa có khối lượng 13kg",
+            "object":["điều hòa"],
+            "power":"",           
+            "price":[""],
+            "weight":"13kg",
+            "volume":"",
+            "specifications":""
+        },
+        {
+            "input_text":"tôi cần tìm Điều hòa Carrier 2 chiều Inverter - Công suất 9.000 BTU/h (1 HP) - Model 2023 có cân nặng 10kg",
+            "object":["Điều hòa Carrier 2 chiều Inverter"],
+            "power":"",           
+            "price":[""],
+            "weight":"10kg",
+            "volume":"",
+            "specifications":""
+        },
+        {
+            "input_text":"cho xem điều hòa có khối lượng nặng nhất",
+            "object":["điều hòa"],
+            "power":"",           
+            "price":[""],
+            "weight":"khối lượng nặng nhất",
+            "volume":"",
+            "specifications":""
+        },
+        {
+            "input_text":"tìm điều hòa nhẹ ",
+            "object":["điều hòa"],
+            "power":"",           
+            "price":[""],
+            "weight":"nhẹ",
+            "volume":"",
+            "specifications":""
+        },
+        {
+            "input_text":"tôi muốn xem điều hòa có khối lượng nhỏ",
+            "object":["điều hòa"],
+            "power":"",           
+            "price":[""],
+            "weight":"khối lượng nhỏ",
+            "volume":"",
+            "specifications":""
+        }]
+    
+
+    example_quantity: [
+        {
+            "input_text":"bao nhiêu điều hòa giá 10tr",
+            "object":["điều hòa"],
+            "power":"",           
+            "price":["10tr"],
+            "weight":"",
+            "volume":"",
+            "specifications":"bao nhiêu"
+        },
+        {
+            "input_text":"số lượng điều hòa giá",
+            "object":["điều hòa"],
+            "power":"",           
+            "price":[""],
+            "weight":"",
+            "volume":"",
+            "specifications":"số lượng"
+        },
+        {
+            "input_text":"có mấy cái điều hòa có cân nặng tầm 7kg có giá dưới 10tr",
+            "object":["điều hòa"],
+            "power":"",           
+            "price":["dưới 1tr"],
+            "weight":"3kg",
+            "volume":"",
+            "specifications":"mấy"
+        },
+        {
+            "input_text":"bao nhiêu điều hòa có công suất trên 9000BTU, giá trên 10 triệu, cân nặng dưới 10kg",
+            "object":["điều hòa"],
+            "power":"9000BTU",           
+            "price":["trên 10 triệu"],
+            "weight":"dưới 10kg",
+            "volume":"",
+            "specifications":"bao nhiêu"
+        },
+        {
+            "input_text":"cho tôi xem bên bạn bán bao nhiêu điều hòa",
+            "object":["điều hòa"],
+            "power":"",           
+            "price":[""],
+            "weight":"",
+            "volume":"",
+            "specifications":"bao nhiêu"
+        },
+        {
+            "input_text":"số lượng điều hòa giá khoảng 15tr",
+            "object":["điều hòa"],
+            "power":"",           
+            "price":["15tr"],
+            "weight":"",
+            "volume":"",
+            "specifications":"số lượng"
+        }]
